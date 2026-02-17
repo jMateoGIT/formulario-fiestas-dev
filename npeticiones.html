@@ -4,8 +4,14 @@
   <meta charset="UTF-8" />
   <title>Consulta de Peticiones</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+
+  <!-- Flatpickr (igual que en index) -->
+  <link rel="stylesheet" href="https://unpkg.com/flatpickr@4.6.13/dist/flatpickr.min.css" crossorigin="anonymous"/>
+  <script src="https://unpkg.com/flatpickr@4.6.13/dist/flatpickr.min.js" crossorigin="anonymous" defer></script>
+  <script src="https://unpkg.com/flatpickr@4.6.13/dist/l10n/es.js" crossorigin="anonymous" defer></script>
+
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
 </head>
 
 <body>
@@ -18,25 +24,28 @@
     <section class="form-container">
       <h2>Consulta de peticiones</h2>
 
-      <!-- Texto en negrita -->
       <p style="font-weight: bold; margin: 0 0 0.75rem 0;">
         Seleccione fecha a consultar
       </p>
 
-      <!-- Calendario (selección única de día) -->
       <label for="fechaConsulta" style="margin-top: 0;">Fecha:</label>
-      <input type="date" id="fechaConsulta" />
 
-      <!-- Mensaje informativo / errores (opcional) -->
+      <!-- Importante: type="text" para Flatpickr -->
+      <input
+        type="text"
+        id="fechaConsulta"
+        placeholder="Selecciona una fecha"
+        autocomplete="off"
+        inputmode="none"
+      />
+
       <p id="msgFecha" class="info-box" aria-live="polite"></p>
 
-      <!-- Contenedor tabla (la rellenas con JS) -->
       <div id="resultadosBox" style="display: none;">
         <h3 style="margin-bottom: 0.5rem;">Peticiones</h3>
         <div id="tablaPeticiones"></div>
       </div>
 
-      <!-- Enlace opcional (si quieres mantener navegación como en tu web) -->
       <p class="consulta-link">
         <a href="index.html" class="btn-consulta">Volver</a>
       </p>
@@ -52,7 +61,6 @@
     </address>
   </footer>
 
-  <!-- Tu JS por detrás -->
   <script src="npeticiones.js" defer></script>
 </body>
 </html>
