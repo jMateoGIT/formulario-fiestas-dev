@@ -76,17 +76,18 @@
     }
   };
 
+
+
   document.addEventListener("DOMContentLoaded", () => {
     // Por si acaso el locale no está cargado aún, esto suele funcionar bien:
     // (en tu index usas flatpickr.l10ns.es directamente)
-    const localeES = flatpickr?.l10ns?.es ?? "es";
 
     fp = flatpickr("#fechaConsulta", {
       mode: "single",              // ✅ selección única
       dateFormat: "Y-m-d",         // ✅ valor base en ISO (mejor para backend)
       altInput: true,              // ✅ input bonito
       altFormat: "d/m/Y",          // ✅ visual como tu web
-      locale: localeES,
+      locale: flatpickr.l10ns.es,
       allowInput: true,
       disableMobile: true,
       maxDate: "31/12/2026",
