@@ -48,7 +48,7 @@
 
       const data = await res.json();
 
-    const filas = items.map((item) => {
+    const filas = data.map((item) => {
 
       return `
         <tr>
