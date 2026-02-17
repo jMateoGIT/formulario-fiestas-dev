@@ -60,7 +60,7 @@
     }).join("");
 
     const htmlTabla = `
-      <table class="tabla-solicitudes">
+      <table class="tabla-npeticiones">
         <thead>
           <tr>
             <th>Posición</th>
