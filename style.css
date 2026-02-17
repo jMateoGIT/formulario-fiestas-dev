@@ -292,10 +292,6 @@ footer a { color: var(--color-accent); }
   background-color: #f1f1f1;
 }
 
-.tabla-npeticiones td:nth-child(3) {
-  font-weight: bold;
-  color: var(--color-accent);
-}
 
 /*Badge styles for solicitud status */
 
