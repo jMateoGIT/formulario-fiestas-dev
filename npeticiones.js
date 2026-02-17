@@ -60,8 +60,8 @@ console.log("TIPO:", typeof fecha);
           </thead>
           <tbody>
             <tr>
-              <td>${fecha}</td>
-              <td>${data.total ?? "-"}</td>
+              <td>${data.fechaSolicitud}</td>
+              <td>${data.numeroNomina}</td>
             </tr>
           </tbody>
         </table>
