@@ -117,7 +117,7 @@ function renderizarTabla(peticiones) {
   const contenedor = document.getElementById("tablaPeticiones");
 
   contenedor.innerHTML = `
-    <table class="tabla-solicitudes tabla-npeticiones">
+    <table class="tabla-npeticiones">
       <thead>
         <tr>
           <th style="text-align:center;">Posición</th>
