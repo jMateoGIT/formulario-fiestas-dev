@@ -115,6 +115,7 @@ if (!peticiones.ok) {
 // ---------- Tabla ----------
 function renderizarTabla(peticiones) {
   const contenedor = document.getElementById("tablaPeticiones");
+  const numEmpleado = document.getElementById("numEmpleado").value.trim();
 
   contenedor.innerHTML = `
     <table class="tabla-npeticiones">
@@ -126,15 +127,24 @@ function renderizarTabla(peticiones) {
         </tr>
       </thead>
       <tbody>
-        ${peticiones.map(p => `
-          <tr>
-            <td style="text-align:center;">${p.posicionFecha ?? "-"}</td>
-            <td style="text-align:center;">${p.fechaSolicitud ?? "-"}</td>
-            <td style="text-align:center;">${p.numeroNomina ?? "-"}</td>
-          </tr>
-        `).join("")}
+        ${peticiones.map(p => {
+
+          const numJDE = (p.numeroJDE ?? "").toString().trim();
+          const nominaMostrar = (p.numeroNomina ?? "").toString().trim();
+          const isSelf = numJDE === numEmpleado;
+
+          return `
+            <tr class="${isSelf ? "row-self" : ""}">
+              <td style="text-align:center;">${p.posicionFecha ?? "-"}</td>
+              <td style="text-align:center;">${p.fechaSolicitud ?? "-"}</td>
+              <td style="text-align:center;">${nominaMostrar || "-"}</td>
+            </tr>
+          `;
+        }).join("")}
       </tbody>
     </table>
   `;
 }
+
 })();
+
