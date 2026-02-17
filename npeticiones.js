@@ -49,15 +49,12 @@
       const data = await res.json();
 
     const filas = items.map((item) => {
-      const fechaSolicitud =
-        item.fechaSolicitud ?? item.fecha ?? item.Fecha ?? fecha; // fallback
-      const numeroNomina =
-        item.numeroNomina ?? item.nomina ?? item.NumeroNomina ?? item.Title ?? "-";
 
       return `
         <tr>
-          <td>${fechaSolicitud}</td>
-          <td>${numeroNomina}</td>
+          <td>${item.posicionFecha}</td>
+          <td>${item.fechaSolicitud}</td>
+          <td>${item.numeroNomina}</td>
         </tr>
       `;
     }).join("");
