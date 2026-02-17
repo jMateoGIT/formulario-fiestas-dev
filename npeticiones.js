@@ -83,8 +83,10 @@
     // (en tu index usas flatpickr.l10ns.es directamente)
 
     fp = flatpickr("#fechaConsulta", {
-      mode: "single",              // ✅ selección única
-      dateFormat: "d/m/Y",         // ✅ valor base en ISO (mejor para backend),
+      mode: "single",  
+      dateFormat: "Y-m-d",   // formato interno (backend)
+    altInput: true,
+    altFormat: "d/m/Y",        // ✅ valor base en ISO (mejor para backend),
 
       onChange: (selectedDates, dateStr) => {
         if (!selectedDates || selectedDates.length === 0) return;
