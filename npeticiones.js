@@ -63,6 +63,7 @@
       <table class="tabla-solicitudes">
         <thead>
           <tr>
+            <th>Posición</th>
             <th>Fecha</th>
             <th>Número nómina</th>
           </tr>
