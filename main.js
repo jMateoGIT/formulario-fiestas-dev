@@ -9,17 +9,6 @@
   let fp;
   let empleadoValido = false;
 
-  const configurarFlatpickr = (mode = "multiple") => {
-    if (fp) fp.destroy();
-    fp = flatpickr("#Fechas", {
-      mode,
-      dateFormat: "d/m/Y",
-      locale: flatpickr.l10ns.es,
-      allowInput: true,
-      conjunction: ", ",
-      maxDate: "31/12/2026"
-    });
-  };
 
   const mostrarMensaje = (msg, tipo = "success") => {
     const respuesta = $("#respuesta");
@@ -93,10 +82,17 @@ function throttle(fn, limit) {
 }
 
   document.addEventListener("DOMContentLoaded", () => {
-    configurarFlatpickr("multiple");
 
-    $("#modoMultiple").addEventListener("change", () => configurarFlatpickr("multiple"));
-    $("#modoRango").addEventListener("change", () => configurarFlatpickr("range"));
+    fp = flatpickr("#Fechas", {
+      mode: "multiple",
+      dateFormat: "Y-m-d",   // formato backend
+      altInput: true,
+      altFormat: "d/m/Y",    // visual
+      locale: flatpickr.l10ns.es,
+      allowInput: true,
+      conjunction: ", ",
+      maxDate: "31/12/2026"
+    });
 
     const inputNumero = $("#NumeroJDE");
     const inputEmail = $("#Email");
