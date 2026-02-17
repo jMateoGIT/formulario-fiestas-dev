@@ -55,7 +55,7 @@ console.log("TIPO:", typeof fecha);
           <thead>
             <tr>
               <th>Fecha</th>
-              <th>Total peticiones</th>
+              <th>Número nómina</th>
             </tr>
           </thead>
           <tbody>
