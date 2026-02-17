@@ -301,6 +301,9 @@ footer a { color: var(--color-accent); }
 .tabla-npeticiones tr.row-self:hover {
   background-color: #b7efb2; /* un poco más oscuro al hover */}
 
+.tabla-npeticiones tr.row-self td:first-child {
+  box-shadow: inset 4px 0 0 #28a745;
+}
 
 /*Badge styles for solicitud status */
 
