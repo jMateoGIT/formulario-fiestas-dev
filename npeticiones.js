@@ -3,63 +3,63 @@
 
   const $ = (sel) => document.querySelector(sel);
 
-  // Pon aquí TU endpoint para consultar peticiones por fecha
-  const NPETICIONES_ENDPOINT = "TU_ENDPOINT_AQUI";
+  const ENDPOINT = "TU_ENDPOINT_AQUI";
 
   let fp;
 
-  const mostrarMsg = (texto = "") => {
-    const el = $("#msgFecha");
-    if (!el) return;
-    el.textContent = texto;
-    el.className = "info-box";
+  const mostrarMsg = (txt = "") => {
+    $("#msgFecha").textContent = txt;
   };
 
-  const mostrarTabla = (htmlTabla) => {
-    $("#tablaPeticiones").innerHTML = htmlTabla; // aquí inyectas tu <table class="tabla-solicitudes">...</table>
+  const toggleLoading = (loading = true) => {
+    const btn = $("#btnConsultar");
+    btn.disabled = loading;
+    btn.classList.toggle("loading", loading);
+  };
+
+  const mostrarTabla = (html) => {
+    $("#tablaPeticiones").innerHTML = html;
     $("#resultadosBox").style.display = "block";
   };
 
-  const ocultarTabla = () => {
-    $("#resultadosBox").style.display = "none";
-    $("#tablaPeticiones").innerHTML = "";
-  };
+  const consultarPeticiones = async () => {
 
-  const consultarPeticiones = async (fechaISO) => {
-    // fechaISO en formato YYYY-MM-DD (perfecto para backend)
-    mostrarMsg("🔄 Consultando...");
+    const fecha = $("#fechaConsulta").value;
+
+    if (!fecha) {
+      mostrarMsg("❌ Selecciona una fecha.");
+      return;
+    }
 
     try {
-      const res = await fetch(NPETICIONES_ENDPOINT, {
+      toggleLoading(true);
+      mostrarMsg("🔄 Consultando...");
+
+      const res = await fetch(ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fecha: fechaISO })
+        body: JSON.stringify({ fecha })
       });
 
       if (!res.ok) {
-        mostrarMsg(`❌ Error al consultar (${res.status}).`);
-        ocultarTabla();
+        mostrarMsg(`❌ Error (${res.status})`);
         return;
       }
 
-      // Ejemplo: si tu backend devuelve directamente HTML ya listo:
-      // const htmlTabla = await res.text();
-
-      // Ejemplo: si tu backend devuelve JSON y tú montas la tabla:
       const data = await res.json();
-      // -> aquí tú crearías la tabla con data
-      // Por ahora te dejo un placeholder:
+
+
       const htmlTabla = `
         <table class="tabla-solicitudes">
           <thead>
             <tr>
               <th>Fecha</th>
-              <th>Nº peticiones</th>
+              <th>Total peticiones</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>${data.fecha ?? fechaISO}</td>
+              <td>${fecha}</td>
               <td>${data.total ?? "-"}</td>
             </tr>
           </tbody>
@@ -72,28 +72,24 @@
     } catch (err) {
       console.error(err);
       mostrarMsg("⚠️ Error de conexión.");
-      ocultarTabla();
+    } finally {
+      toggleLoading(false);
     }
   };
 
-
-
   document.addEventListener("DOMContentLoaded", () => {
-    // Por si acaso el locale no está cargado aún, esto suele funcionar bien:
-    // (en tu index usas flatpickr.l10ns.es directamente)
 
     fp = flatpickr("#fechaConsulta", {
-      mode: "single",  
-      dateFormat: "Y-m-d",   // formato interno (backend)
-    altInput: true,
-    altFormat: "d/m/Y",        // ✅ valor base en ISO (mejor para backend),
-
-      onChange: (selectedDates, dateStr) => {
-        if (!selectedDates || selectedDates.length === 0) return;
-
-        // Como dateFormat es "Y-m-d", dateStr ya es ISO (YYYY-MM-DD)
-        consultarPeticiones(dateStr);
-      }
+      mode: "single",
+      dateFormat: "Y-m-d",   // formato backend
+      altInput: true,
+      altFormat: "d/m/Y",    // visual
+      locale: flatpickr.l10ns.es,
+      allowInput: true,
+      maxDate: "2026-12-31"
     });
+
+    $("#btnConsultar").addEventListener("click", consultarPeticiones);
+
   });
 })();
