@@ -90,7 +90,7 @@
       locale: flatpickr.l10ns.es,
       allowInput: true,
       disableMobile: true,
-      maxDate: "31/12/2026",
+      maxDate: "2026-12-31",
 
       onChange: (selectedDates, dateStr) => {
         if (!selectedDates || selectedDates.length === 0) return;
