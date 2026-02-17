@@ -85,10 +85,12 @@ document.getElementById("btnConsultar").addEventListener("click", async () => {
       body: JSON.stringify({ fecha })
     });
 
-    if (!peticiones.ok) {
-      msg.textContent = "❌ Error al obtener las peticiones.";
-      return;
-    }
+if (!peticiones.ok) {
+  const raw = await peticiones.text().catch(() => "");
+  console.error("NPeticiones HTTP", peticiones.status, raw);
+  msg.textContent = `❌ Error HTTP ${peticiones.status} (ver consola).`;
+  return;
+}
 
     const datos = await peticiones.json();
 
