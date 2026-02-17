@@ -1,3 +1,6 @@
+(() => {
+  "use strict";
+
 // ---------- Flatpickr ----------
 document.addEventListener("DOMContentLoaded", () => {
   flatpickr("#fechaConsulta", {
@@ -132,3 +135,4 @@ function renderizarTabla(peticiones) {
     </table>
   `;
 }
+})();
