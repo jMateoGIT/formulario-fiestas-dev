@@ -25,8 +25,7 @@
   const consultarPeticiones = async () => {
 
     const fecha = $("#fechaConsulta").value;
-console.log("VALOR FECHA:", fecha);
-console.log("TIPO:", typeof fecha);
+
     if (!fecha) {
       mostrarMsg("❌ Selecciona una fecha.");
       return;
@@ -49,23 +48,33 @@ console.log("TIPO:", typeof fecha);
 
       const data = await res.json();
 
+    const filas = items.map((item) => {
+      const fechaSolicitud =
+        item.fechaSolicitud ?? item.fecha ?? item.Fecha ?? fecha; // fallback
+      const numeroNomina =
+        item.numeroNomina ?? item.nomina ?? item.NumeroNomina ?? item.Title ?? "-";
 
-      const htmlTabla = `
-        <table class="tabla-solicitudes">
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Número nómina</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>${fechaSolicitud}</td>
-              <td>${numeroNomina}</td>
-            </tr>
-          </tbody>
-        </table>
+      return `
+        <tr>
+          <td>${fechaSolicitud}</td>
+          <td>${numeroNomina}</td>
+        </tr>
       `;
+    }).join("");
+
+    const htmlTabla = `
+      <table class="tabla-solicitudes">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Número nómina</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${filas}
+        </tbody>
+      </table>
+    `;
 
       mostrarMsg("");
       mostrarTabla(htmlTabla);
