@@ -84,13 +84,7 @@
 
     fp = flatpickr("#fechaConsulta", {
       mode: "single",              // ✅ selección única
-      dateFormat: "Y-m-d",         // ✅ valor base en ISO (mejor para backend)
-      altInput: true,              // ✅ input bonito
-      altFormat: "d/m/Y",          // ✅ visual como tu web
-      locale: flatpickr.l10ns.es,
-      allowInput: true,
-      disableMobile: true,
-      maxDate: "2026-12-31",
+      dateFormat: "d/m/Y",         // ✅ valor base en ISO (mejor para backend),
 
       onChange: (selectedDates, dateStr) => {
         if (!selectedDates || selectedDates.length === 0) return;
