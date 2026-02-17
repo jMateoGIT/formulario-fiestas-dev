@@ -7,6 +7,7 @@
   const VALIDACION_ENDPOINT = "https://defaulte75a677e41004431b89ee574d8d990.10.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/ed2a2c35aabe4e49924cea99b944b27c/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=mk7U39gRRcKGJ97_Y6yJPT-QDWaz4UIecrtF28U1pEI";
 
   let fp;
+  let empleadoValido = false;
 
   const mostrarMsg = (txt = "") => {
     $("#msgFecha").textContent = txt;
@@ -24,58 +25,69 @@
   };
 
 const validarEmpleadoConClave = async (numero, clave) => {
-  const info = $("#nombreEmpleado");
-  empleadoValido = false;
+    const info = $("#nombreEmpleado");
+    empleadoValido = false;
 
-  if (!/^\d{6}$/.test(numero)) {
-    info.textContent = "❌ Número inválido";
-    info.className = "info-box";
-    return;
-  }
-
-  if (!clave) {
-    info.textContent = "❌ Debes introducir la clave";
-    info.className = "info-box";
-    return;
-  }
-
-  info.textContent = "🔐 Validando acceso...";
-  info.className = "info-box";
-
-  try {
-    const res = await fetch(VALIDACION_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ numeroEmpleado: numero, clave })
-    });
-
-    if (!res.ok) {
-      info.textContent = "❌ Clave incorrecta o usuario no válido";
-      return;
+    if (!/^\d{6}$/.test(numero)) {
+      info.textContent = "❌ Número inválido";
+      info.className = "info-box";
+      return false;
     }
 
-    const datos = await res.json();
-    if (datos.valido) {
-      info.textContent = "✅ Acceso validado";
+    if (!clave) {
+      info.textContent = "❌ Debes introducir la clave";
       info.className = "info-box";
-      empleadoValido = true;
-    } else {
+      return false;
+    }
+
+    info.textContent = "🔐 Validando acceso...";
+    info.className = "info-box";
+
+    try {
+      const res = await fetch(VALIDACION_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ numeroEmpleado: numero, clave })
+      });
+
+      if (!res.ok) {
+        info.textContent = "❌ Clave incorrecta o usuario no válido";
+        return false;
+      }
+
+      const datos = await res.json();
+
+      if (datos.valido) {
+        info.textContent = "✅ Acceso validado";
+        info.className = "info-box";
+        empleadoValido = true;
+        return true;
+      }
+
       info.textContent = "❌ Usuario o clave incorrecta";
       info.className = "info-box";
+      return false;
+
+    } catch (err) {
+      console.error(err);
+      info.textContent = "⚠️ Error de conexión";
+      info.className = "info-box";
+      return false;
     }
-  } catch (err) {
-    console.error(err);
-    info.textContent = "⚠️ Error de conexión";
-    info.className = "info-box";
-  }
-};
-
-  const consultarPeticiones = async () => {
-
+  };
+const consultarPeticiones = async () => {
     const fecha = $("#fechaConsulta").value;
+    const numeroEmpleado = $("#numEmpleado")?.value?.trim() ?? "";
+    const clave = $("#claveAcceso")?.value?.trim() ?? "";
 
     if (!fecha) {
       mostrarMsg("❌ Selecciona una fecha.");
+      return;
+    }
+
+    const ok = await validarEmpleadoConClave(numeroEmpleado, clave);
+    if (!ok) {
+      mostrarMsg("❌ Número de empleado o clave no válidos.");
       return;
     }
 
@@ -96,31 +108,28 @@ const validarEmpleadoConClave = async (numero, clave) => {
 
       const data = await res.json();
 
-    const filas = data.map((item) => {
-
-      return `
+      const filas = data.map((item) => `
         <tr>
-          <td>${item.posicionFecha}</td>
-          <td>${item.fechaSolicitud}</td>
-          <td>${item.numeroNomina}</td>
+          <td>${item.posicionFecha ?? "-"}</td>
+          <td>${item.fechaSolicitud ?? "-"}</td>
+          <td>${item.numeroNomina ?? "-"}</td>
         </tr>
-      `;
-    }).join("");
+      `).join("");
 
-    const htmlTabla = `
-      <table class="tabla-npeticiones">
-        <thead>
-          <tr>
-            <th>Posición</th>
-            <th>Fecha</th>
-            <th>Número nómina</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${filas}
-        </tbody>
-      </table>
-    `;
+      const htmlTabla = `
+        <table class="tabla-solicitudes tabla-npeticiones">
+          <thead>
+            <tr>
+              <th>Posición</th>
+              <th>Fecha</th>
+              <th>Número nómina</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${filas}
+          </tbody>
+        </table>
+      `;
 
       mostrarMsg("");
       mostrarTabla(htmlTabla);
@@ -134,25 +143,16 @@ const validarEmpleadoConClave = async (numero, clave) => {
   };
 
   document.addEventListener("DOMContentLoaded", () => {
-
     fp = flatpickr("#fechaConsulta", {
       mode: "single",
-      dateFormat: "Y-m-d",   // formato backend
+      dateFormat: "Y-m-d",
       altInput: true,
-      altFormat: "d/m/Y",    // visual
+      altFormat: "d/m/Y",
       locale: flatpickr.l10ns.es,
       allowInput: true,
       maxDate: "2026-12-31"
     });
 
-      await validarEmpleadoConClave(numeroEmpleado, clave);
-
-      if (!empleadoValido) {
-        mostrarMensaje("❌ Número de empleado o clave no válidos.", "error");
-       return;
-      }
-
     $("#btnConsultar").addEventListener("click", consultarPeticiones);
-
   });
 })();
