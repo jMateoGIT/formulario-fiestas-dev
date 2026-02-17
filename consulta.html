@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Consulta de Solicitudes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+</head>
+<body>
+  <header class="header">
+    <img src="avanza_logo.png" alt="Logo Avanza" />
+    <h1 class="site-title">Consulta de Solicitudes – Taller Avanza Zaragoza</h1>
+  </header>
+
+  <main class="page-content">
+    <section class="form-container">
+      <h2>Consulta tus solicitudes</h2>
+
+      <div id="loginBox">
+        <label for="numEmpleado">Número de empleado:</label>
+        <input type="text" id="numEmpleado" maxlength="6" placeholder="Ej. 123456" />
+
+        <label for="claveAcceso">Clave de acceso:</label>
+        <input type="password" id="claveAcceso" placeholder="Introduce tu clave personal" />
+
+        <button id="btnAcceder">Acceder</button>
+        <p id="msgLogin" class="info-box"></p>
+      </div>
+
+      <div id="resultadosBox" style="display: none;">
+        <h3>Tus solicitudes</h3>
+        <div id="tablaSolicitudes"></div>
+      </div>
+
+        <p id="solicitud" aria-live="polite"></p>
+        <p class="consulta-link">
+         <a href="index.html" class="btn-consulta">Solicitar FP</a>
+        </p>
+    </section>
+  </main>
+
+  <footer>
+    <address>
+      <p style="color: var(--color-accent); font-weight: bold;">Mantenimiento Taller de Zaragoza</p>
+      <p>Dirección Urbanos Zaragoza · Miguel Servet, 199 – 50013 Zaragoza</p>
+      <p>📞 976 413 900 · ✉️ <a href="mailto:mantenimiento.zaragoza@mobilityado.com">mantenimiento.zaragoza@mobilityado.com</a></p>
+      <p>🌐 <a href="https://zaragoza.avanzagrupo.com" target="_blank" rel="noopener">zaragoza.avanzagrupo.com</a></p>
+    </address>
+  </footer>
+
+  <script src="consulta.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <title>Solicitud de Días de Fiesta</title>
+  <meta name="description" content="Formulario para solicitar días de fiesta pagados en el Taller Avanza Zaragoza"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="referrer" content="same-origin"/>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+
+  <link rel="stylesheet" href="https://unpkg.com/flatpickr@4.6.13/dist/flatpickr.min.css" crossorigin="anonymous"/><!-- Agrega atributo integrity en producción -->
+  <script src="https://unpkg.com/flatpickr@4.6.13/dist/flatpickr.min.js" crossorigin="anonymous" defer></script>
+  <script src="https://unpkg.com/flatpickr@4.6.13/dist/l10n/es.js" crossorigin="anonymous" defer></script>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="header">
+    <img src="avanza_logo.png" alt="Logo Avanza"/>
+    <h1 class="site-title">Portal de solicitudes – Taller Avanza Zaragoza</h1>
+  </header>
+
+  <main class="page-content">
+    <section class="form-container">
+      <h2>Solicitud Fiestas Pagadas</h2>
+
+      <form id="formFiestas" autocomplete="off" novalidate>
+        <label for="NumeroJDE">Número de empleado: <span class="asterisco">*</span></label>
+        <input id="NumeroJDE"
+               name="FakeNameEmpleado"
+               type="text"
+               pattern="\d{6}"
+               inputmode="numeric"
+               placeholder="Inserte número de empleado (6 dígitos)"
+               required
+               aria-describedby="nombreEmpleado"/>
+        <label for="claveAcceso">Clave de acceso: <span class="asterisco">*</span></label>
+        <input type="password" id="claveAcceso" placeholder="Introduce tu clave personal" />
+
+        <p id="nombreEmpleado" class="info-box" aria-live="polite"></p>
+
+        <label for="Email">Correo electrónico: <span class="asterisco">**</span></label>
+        <input id="Email" name="email" type="email" placeholder="Inserte correo si quiere ser notificado"/>
+
+        <fieldset class="modo-selector">
+          <legend>Modo de selección: <span class="asterisco">*</span></legend>
+        
+          <label class="tooltip">
+            <input type="radio" name="modo" id="modoMultiple" checked/> Fechas individuales
+            <span class="info-icon" tabindex="0">i
+              <span class="tooltip-text">
+                Selección de uno o varios días sueltos o consecutivos, con opción de aprobar cada uno por separado.
+              </span>
+            </span>
+          </label>
+        
+          <label class="tooltip">
+            <input type="radio" name="modo" id="modoRango"/> Rango de fechas
+            <span class="info-icon" tabindex="0">i
+              <span class="tooltip-text">
+                Selección de un intervalo continuo de días, cuya aprobación se realiza de forma conjunta.
+              </span>
+            </span>
+          </label>
+        </fieldset>
+        
+
+        <label for="Fechas">Fechas solicitadas: <span class="asterisco">*</span></label>
+        <input id="Fechas"
+               name="FakeNameFechas"
+               type="text"
+               placeholder="Selecciona las fechas deseadas"
+               required/>
+
+        <input id="FechasSolicitadas" name="FechasSolicitadas" type="hidden"/>
+
+        <label for="Comentario">Comentario:</label>
+        <textarea id="Comentario" name="comentarioExtra"  rows="4"></textarea>
+
+        <button id="btnEnviar" type="submit">
+          <span class="btn-text">Enviar solicitud</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+        <p class="consent-msg">
+          <span class="asterisco">*</span> Campo obligatorio
+          <br/>
+          <span class="asterisco" style="display:inline-block; margin-top:0.6rem;">**</span> El correo electrónico facilitado será utilizado únicamente con la finalidad de remitirle la respuesta a su solicitud. Si no desea comunicar una dirección de correo electrónico podrá consultar el estado de su solicitud a través de la propia plataforma
+        </p>
+       
+        <p id="respuesta" aria-live="polite"></p>
+        <p class="consulta-link">
+         <a href="consulta.html" class="btn-consulta">Consultar estado de mi solicitud</a>
+        </p>
+
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <address>
+      <p style="color: var(--color-accent); font-weight: bold;">Mantenimiento Taller de Zaragoza</p>
+      <p>Dirección Urbanos Zaragoza · Miguel Servet, 199 – 50013 Zaragoza</p>
+      <p>📞 976 413 900 · ✉️ <a href="mailto:mantenimiento.zaragoza@mobilityado.com">mantenimiento.zaragoza@mobilityado.com</a></p>
+      <p>🌐 <a href="https://zaragoza.avanzagrupo.com" target="_blank" rel="noopener">zaragoza.avanzagrupo.com</a></p>
+    </address>
+  </footer>
+
+  <script type="module" src="main.js" defer></script>
+</body>
+</html>
+
