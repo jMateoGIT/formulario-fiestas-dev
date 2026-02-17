@@ -91,7 +91,7 @@ function throttle(fn, limit) {
       locale: flatpickr.l10ns.es,
       allowInput: true,
       conjunction: ", ",
-      maxDate: "31/12/2026"
+      maxDate: "2026-12-31"
     });
 
     const inputNumero = $("#NumeroJDE");
