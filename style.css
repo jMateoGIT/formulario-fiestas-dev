@@ -295,11 +295,11 @@ footer a { color: var(--color-accent); }
 
 /* Resaltar fila del propio empleado */
 .tabla-npeticiones tr.row-self {
-  background-color: #d4edda; /* verde claro */
+  background-color: #c8f7c5; /* verde claro */
 }
 
 .tabla-npeticiones tr.row-self:hover {
-  background-color: #c3e6cb; /* un poco más oscuro al hover */}
+  background-color: #b7efb2; /* un poco más oscuro al hover */}
 
 
 /*Badge styles for solicitud status */
