@@ -25,7 +25,8 @@
   const consultarPeticiones = async () => {
 
     const fecha = $("#fechaConsulta").value;
-
+console.log("VALOR FECHA:", fecha);
+console.log("TIPO:", typeof fecha);
     if (!fecha) {
       mostrarMsg("❌ Selecciona una fecha.");
       return;
