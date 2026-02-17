@@ -2,41 +2,44 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Consulta de Solicitudes</title>
+  <title>Consulta de Peticiones</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
 </head>
+
 <body>
   <header class="header">
     <img src="avanza_logo.png" alt="Logo Avanza" />
-    <h1 class="site-title">Consulta de Solicitudes – Taller Avanza Zaragoza</h1>
+    <h1 class="site-title">Consulta de Peticiones – Taller Avanza Zaragoza</h1>
   </header>
 
   <main class="page-content">
     <section class="form-container">
-      <h2>Consulta tus solicitudes</h2>
+      <h2>Consulta de peticiones</h2>
 
-      <div id="loginBox">
-        <label for="numEmpleado">Número de empleado:</label>
-        <input type="text" id="numEmpleado" maxlength="6" placeholder="Ej. 123456" />
+      <!-- Texto en negrita -->
+      <p style="font-weight: bold; margin: 0 0 0.75rem 0;">
+        Seleccione fecha a consultar
+      </p>
 
-        <label for="claveAcceso">Clave de acceso:</label>
-        <input type="password" id="claveAcceso" placeholder="Introduce tu clave personal" />
+      <!-- Calendario (selección única de día) -->
+      <label for="fechaConsulta" style="margin-top: 0;">Fecha:</label>
+      <input type="date" id="fechaConsulta" />
 
-        <button id="btnAcceder">Acceder</button>
-        <p id="msgLogin" class="info-box"></p>
-      </div>
+      <!-- Mensaje informativo / errores (opcional) -->
+      <p id="msgFecha" class="info-box" aria-live="polite"></p>
 
+      <!-- Contenedor tabla (la rellenas con JS) -->
       <div id="resultadosBox" style="display: none;">
-        <h3>Tus solicitudes</h3>
-        <div id="tablaSolicitudes"></div>
+        <h3 style="margin-bottom: 0.5rem;">Peticiones</h3>
+        <div id="tablaPeticiones"></div>
       </div>
 
-        <p id="solicitud" aria-live="polite"></p>
-        <p class="consulta-link">
-         <a href="index.html" class="btn-consulta">Solicitar FP</a>
-        </p>
+      <!-- Enlace opcional (si quieres mantener navegación como en tu web) -->
+      <p class="consulta-link">
+        <a href="index.html" class="btn-consulta">Volver</a>
+      </p>
     </section>
   </main>
 
@@ -49,6 +52,7 @@
     </address>
   </footer>
 
-  <script src="consulta.js" defer></script>
+  <!-- Tu JS por detrás -->
+  <script src="npeticiones.js" defer></script>
 </body>
 </html>
