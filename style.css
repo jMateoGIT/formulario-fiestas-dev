@@ -298,6 +298,10 @@ footer a { color: var(--color-accent); }
   background-color: #c8f7c5; /* verde claro */
 }
 
+.tabla-npeticiones tr.row-self td {
+  font-weight: 630;
+}
+
 .tabla-npeticiones tr.row-self:hover {
   background-color: #b7efb2; /* un poco más oscuro al hover */}
 
