@@ -94,7 +94,7 @@ function renderizarTabla(solicitudes) {
       <td style="text-align: center;">${sol.fechaSolicitud}</td>
       <td style="text-align: center;">${sol.fechasSolicitadas}</td>
       <td style="text-align: center;"><span class="${claseEstado}">${sol.estado}</span></td>
-      <td>${sol.comentario || "-"}</td>
+      <td>${sol.comentario || ""}</td>
     </tr>
   `;
 }).join("")}
