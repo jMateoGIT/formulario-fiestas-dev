@@ -83,7 +83,6 @@ function throttle(fn, limit) {
     fp = flatpickr("#fechas", {
       mode: "multiple",
       dateFormat: "Y-m-d",   // formato backend
-      altInput: true,
       altFormat: "d/m/Y",    // visual
       locale: flatpickr.l10ns.es,
       allowInput: true,
