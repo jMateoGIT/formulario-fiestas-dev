@@ -80,21 +80,28 @@ function throttle(fn, limit) {
   };
 }
 
+
   document.addEventListener("DOMContentLoaded", () => {
-
-
-  const min = new Date();
-  min.setDate(min.getDate() + 7);
-
     fp = flatpickr("#fechas", {
       mode: "multiple",
-      dateFormat: "Y-m-d",   // formato backend
-      altFormat: "d/m/Y",    // visual
+      dateFormat: "Y-m-d",     // backend
+      altInput: true,
+      altFormat: "d/m/Y",      // visual
       locale: flatpickr.l10ns.es,
       allowInput: true,
       conjunction: ", ",
-      minDate: min, 
-      maxDate: "2026-12-31"
+      minDate: new Date().fp_incr(7),
+      maxDate: "2026-12-31",
+
+      onReady: (sel, str, instance) => {
+        // ✅ evitar autocomplete raro en el input visible
+        if (instance.altInput) {
+          instance.altInput.setAttribute("autocomplete", "off");
+          instance.altInput.setAttribute("inputmode", "none");
+          instance.altInput.setAttribute("name", "requested_dates_visible");
+          instance.altInput.setAttribute("spellcheck", "false");
+        }
+      }
     });
 
     const inputNumero = $("#numeroJDE");
