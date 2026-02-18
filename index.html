@@ -26,9 +26,28 @@
 
       <form id="formFiestas" autocomplete="off" novalidate>
         <label for="numeroJDE">Número de empleado: <span class="asterisco">*</span></label>
-        <input type="text" id="numeroJDE" maxlength="6" inputmode="numeric" autocomplete="off" placeholder="Inserte número de empleado (6 dígitos)"/>
+        <input
+          type="text"
+          id="numeroJDE"
+          name="employee_id"
+          maxlength="6"
+          inputmode="numeric"
+          autocomplete="off"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+          placeholder="Inserte número de empleado (6 dígitos)"
+        />
+
         <label for="claveAcceso">Clave de acceso: <span class="asterisco">*</span></label>
-        <input type="password" id="claveAcceso" placeholder="Introduce tu clave personal" />
+        <input
+          type="password"
+          id="claveAcceso"
+          name="access_key"
+          autocomplete="new-password"
+          placeholder="Introduce tu clave personal"
+        />
+
 
         <p id="nombreEmpleado" class="info-box" aria-live="polite"></p>
 
@@ -36,13 +55,14 @@
         <input id="email" name="email" type="email" placeholder="Inserte correo si quiere ser notificado"/>
 
         <label for="fechas">Fechas solicitadas: <span class="asterisco">*</span></label>
-        <input id="fechas"
-               name="FakeNameFechas"
-               type="text"
-               placeholder="Selecciona las fechas deseadas"
-               />
-
-        <input id="fechasSolicitadas" name="fechasSolicitadas" type="hidden"/>
+        <input
+          id="fechas"
+          name="FakeNameFechas"
+          type="text"
+          autocomplete="off"
+          inputmode="none"
+          placeholder="Selecciona las fechas deseadas"
+        />
 
         <label for="Comentario">Comentario:</label>
         <textarea id="Comentario" name="comentarioExtra"  rows="4"></textarea>
