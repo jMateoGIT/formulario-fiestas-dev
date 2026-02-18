@@ -85,7 +85,7 @@ function throttle(fn, limit) {
 
 
   const min = new Date();
-  min.setDate(min.getDate() + 6);
+  min.setDate(min.getDate() + 7);
 
     fp = flatpickr("#fechas", {
       mode: "multiple",
