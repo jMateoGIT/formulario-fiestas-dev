@@ -337,3 +337,85 @@ footer a { color: var(--color-accent); }
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
+
+/* ======= Tabla responsive tipo cards (móvil) ======= */
+@media screen and (max-width: 768px) {
+
+  .tabla-solicitudes thead {
+    display: none;
+  }
+
+  .tabla-solicitudes,
+  .tabla-solicitudes tbody,
+  .tabla-solicitudes tr,
+  .tabla-solicitudes td {
+    display: block;
+    width: 100%;
+  }
+
+  .tabla-solicitudes {
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .tabla-solicitudes tr {
+    background: var(--color-surface);
+    margin: 0 0 12px 0;
+    padding: 12px 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-left: 6px solid var(--color-primary);
+  }
+
+  .tabla-solicitudes td {
+    border: none;
+    padding: 8px 0;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .tabla-solicitudes td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  /* Estado destacado */
+  .tabla-solicitudes td[data-label="Estado"] {
+    padding-top: 10px;
+  }
+
+  /* Comentario en bloque si es largo */
+  .tabla-solicitudes td[data-label="Comentario"] {
+    grid-template-columns: 140px 1fr;
+    word-break: break-word;
+  }
+
+  /* Quitar estilos de zebra hover en móvil (no aportan) */
+  .tabla-solicitudes tr:nth-child(even),
+  .tabla-solicitudes tr:hover {
+    background: var(--color-surface);
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .page-content { padding: 1rem; }
+}
+
+@media screen and (max-width: 768px) {
+  .consulta-link {
+    position: sticky;
+    bottom: 10px;
+    margin-top: 12px;
+    padding-top: 10px;
+    z-index: 50;
+  }
+
+  .btn-consulta {
+    width: 100%;
+    max-width: 320px;
+  }
+}

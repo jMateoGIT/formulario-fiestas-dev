@@ -70,36 +70,39 @@ document.getElementById("btnAcceder").addEventListener("click", async () => {
 
 function renderizarTabla(solicitudes) {
   const contenedor = document.getElementById("tablaSolicitudes");
+
   contenedor.innerHTML = `
-  <table class="tabla-solicitudes">
-    <thead>
-      <tr>
-        <th style="text-align: center;">Fecha solicitud</th>
-        <th style="text-align: center;">Fecha solicitada</th>
-        <th style="text-align: center;">Estado</th>
-        <th>Comentario</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${solicitudes.map(sol => {
-  const estado = sol.estado?.toLowerCase();
-  let claseEstado = "";
+    <table class="tabla-solicitudes">
+      <thead>
+        <tr>
+          <th style="text-align:center;">Fecha solicitud</th>
+          <th style="text-align:center;">Fecha solicitada</th>
+          <th style="text-align:center;">Estado</th>
+          <th>Comentario</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${solicitudes.map(sol => {
+          const estado = (sol.estado || "").toLowerCase();
+          let claseEstado = "badge badge-pendiente";
 
-  if (estado === "aprobada") claseEstado = "badge badge-aprobado";
-  else if (estado === "rechazada") claseEstado = "badge badge-rechazado";
-  else claseEstado = "badge badge-pendiente"; // por defecto: pendiente
+          if (estado === "aprobada") claseEstado = "badge badge-aprobado";
+          else if (estado === "rechazada") claseEstado = "badge badge-rechazado";
 
-  return `
-    <tr>
-      <td style="text-align: center;">${sol.fechaSolicitud}</td>
-      <td style="text-align: center;">${sol.fechasSolicitadas}</td>
-      <td style="text-align: center;"><span class="${claseEstado}">${sol.estado}</span></td>
-      <td>${sol.comentario || ""}</td>
-    </tr>
-  `;
-}).join("")}
-    </tbody>
-  </table>
+          return `
+            <tr>
+              <td data-label="Fecha solicitud" style="text-align:center;">${sol.fechaSolicitud}</td>
+              <td data-label="Fecha solicitada" style="text-align:center;">${sol.fechasSolicitadas}</td>
+              <td data-label="Estado" style="text-align:center;">
+                <span class="${claseEstado}">${sol.estado}</span>
+              </td>
+              <td data-label="Comentario">${sol.comentario || ""}</td>
+            </tr>
+          `;
+        }).join("")}
+      </tbody>
+    </table>
   `;
 }
+
 
