@@ -25,6 +25,35 @@
       <h2>Solicitud Fiestas Pagadas</h2>
 
       <form id="formFiestas" autocomplete="off" novalidate>
+
+<!-- Señuelos para que Chrome meta aquí el autofill de pago -->
+<input
+  type="text"
+  name="cc-number"
+  autocomplete="cc-number"
+  tabindex="-1"
+  aria-hidden="true"
+  style="position:absolute; left:-9999px; top:-9999px; height:0; width:0; opacity:0;"
+/>
+<input
+  type="text"
+  name="cc-name"
+  autocomplete="cc-name"
+  tabindex="-1"
+  aria-hidden="true"
+  style="position:absolute; left:-9999px; top:-9999px; height:0; width:0; opacity:0;"
+/>
+<input
+  type="text"
+  name="cc-exp"
+  autocomplete="cc-exp"
+  tabindex="-1"
+  aria-hidden="true"
+  style="position:absolute; left:-9999px; top:-9999px; height:0; width:0; opacity:0;"
+/>
+
+
+
         <label for="numeroJDE">Número de empleado: <span class="asterisco">*</span></label>
         <input
           type="text"
@@ -57,11 +86,12 @@
         <label for="fechas">Fechas solicitadas: <span class="asterisco">*</span></label>
         <input
           id="fechas"
-          name="FakeNameFechas"
+          name="fechaSolicitada"
           type="text"
           autocomplete="off"
           inputmode="none"
           placeholder="Selecciona las fechas deseadas"
+          required
         />
 
         <label for="comentario">Comentario:</label>
