@@ -405,17 +405,3 @@ footer a { color: var(--color-accent); }
   .page-content { padding: 1rem; }
 }
 
-@media screen and (max-width: 768px) {
-  .consulta-link {
-    position: sticky;
-    bottom: 10px;
-    margin-top: 12px;
-    padding-top: 10px;
-    z-index: 50;
-  }
-
-  .btn-consulta {
-    width: 100%;
-    max-width: 320px;
-  }
-}
