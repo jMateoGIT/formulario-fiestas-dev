@@ -75,9 +75,9 @@ function renderizarTabla(solicitudes) {
     <table class="tabla-solicitudes">
       <thead>
         <tr>
-          <th style="text-align:center;">Fecha solicitud</th>
-          <th style="text-align:center;">Fecha solicitada</th>
-          <th style="text-align:center;">Estado</th>
+          <th>Fecha solicitud</th>
+          <th>Fecha solicitada</th>
+          <th>Estado</th>
           <th>Comentario</th>
         </tr>
       </thead>
@@ -91,9 +91,9 @@ function renderizarTabla(solicitudes) {
 
           return `
             <tr>
-              <td data-label="Fecha solicitud" style="text-align:center;">${sol.fechaSolicitud}</td>
-              <td data-label="Fecha solicitada" style="text-align:center;">${sol.fechasSolicitadas}</td>
-              <td data-label="Estado" style="text-align:center;">
+              <td data-label="Fecha solicitud">${sol.fechaSolicitud}</td>
+              <td data-label="Fecha solicitada">${sol.fechasSolicitadas}</td>
+              <td data-label="Estado">
                 <span class="${claseEstado}">${sol.estado}</span>
               </td>
               <td data-label="Comentario">${sol.comentario || ""}</td>
