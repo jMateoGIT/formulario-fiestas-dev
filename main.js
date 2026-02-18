@@ -83,7 +83,7 @@ function throttle(fn, limit) {
 
   document.addEventListener("DOMContentLoaded", () => {
 
-    fp = flatpickr("#Fechas", {
+    fp = flatpickr("#fechas", {
       mode: "multiple",
       dateFormat: "Y-m-d",   // formato backend
       altInput: true,
@@ -94,8 +94,8 @@ function throttle(fn, limit) {
       maxDate: "2026-12-31"
     });
 
-    const inputNumero = $("#NumeroJDE");
-    const inputEmail = $("#Email");
+    const inputNumero = $("#numeroJDE");
+    const inputEmail = $("#email");
     const inputClave = $("#claveAcceso");
 
     inputNumero.addEventListener("blur", () => {
@@ -114,7 +114,7 @@ function throttle(fn, limit) {
       e.preventDefault();
 
       const numeroEmpleado = inputNumero.value.trim();
-      const fechas = $("#Fechas").value.trim();
+      const fechas = $("#fechas").value.trim();
       const correo = inputEmail.value.trim();
       const clave = $("#claveAcceso").value.trim();
 
@@ -147,7 +147,7 @@ function throttle(fn, limit) {
         return;
       }
 
-      $("#FechasSolicitadas").value = fechas;
+      $("#fechasSolicitadas").value = fechas;
 
       const body = {
         empleado: numeroEmpleado,

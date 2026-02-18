@@ -25,31 +25,24 @@
       <h2>Solicitud Fiestas Pagadas</h2>
 
       <form id="formFiestas" autocomplete="off" novalidate>
-        <label for="NumeroJDE">Número de empleado: <span class="asterisco">*</span></label>
-        <input id="NumeroJDE"
-               name="FakeNameEmpleado"
-               type="text"
-               pattern="\d{6}"
-               inputmode="numeric"
-               placeholder="Inserte número de empleado (6 dígitos)"
-               required
-               aria-describedby="nombreEmpleado"/>
+        <label for="numeroJDE">Número de empleado: <span class="asterisco">*</span></label>
+        <input type="text" id="numeroJDE" maxlength="6" inputmode="numeric" placeholder="Inserte número de empleado (6 dígitos)"/>
         <label for="claveAcceso">Clave de acceso: <span class="asterisco">*</span></label>
         <input type="password" id="claveAcceso" placeholder="Introduce tu clave personal" />
 
         <p id="nombreEmpleado" class="info-box" aria-live="polite"></p>
 
-        <label for="Email">Correo electrónico: <span class="asterisco">**</span></label>
-        <input id="Email" name="email" type="email" placeholder="Inserte correo si quiere ser notificado"/>
+        <label for="email">Correo electrónico: <span class="asterisco">**</span></label>
+        <input id="email" name="email" type="email" placeholder="Inserte correo si quiere ser notificado"/>
 
-        <label for="Fechas">Fechas solicitadas: <span class="asterisco">*</span></label>
-        <input id="Fechas"
+        <label for="fechas">Fechas solicitadas: <span class="asterisco">*</span></label>
+        <input id="fechas"
                name="FakeNameFechas"
                type="text"
                placeholder="Selecciona las fechas deseadas"
                required/>
 
-        <input id="FechasSolicitadas" name="FechasSolicitadas" type="hidden"/>
+        <input id="fechasSolicitadas" name="fechasSolicitadas" type="hidden"/>
 
         <label for="Comentario">Comentario:</label>
         <textarea id="Comentario" name="comentarioExtra"  rows="4"></textarea>
