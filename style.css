@@ -341,59 +341,71 @@ footer a { color: var(--color-accent); }
 /* ======= Tabla responsive tipo cards (móvil) ======= */
 @media screen and (max-width: 768px) {
 
-  .tabla-solicitudes thead {
-    display: none;
-  }
+  .tabla-solicitudes thead { display: none; }
 
   .tabla-solicitudes,
   .tabla-solicitudes tbody,
-  .tabla-solicitudes tr,
-  .tabla-solicitudes td {
+  .tabla-solicitudes tr {
     display: block;
     width: 100%;
   }
 
-  .tabla-solicitudes {
-    box-shadow: none;
-    border-radius: 0;
-  }
+  .tabla-solicitudes { box-shadow: none; border-radius: 0; }
 
   .tabla-solicitudes tr {
     background: var(--color-surface);
-    margin: 0 0 12px 0;
-    padding: 12px 12px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    margin: 0 0 14px 0;
+    padding: 14px 14px;
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.10);
     border-left: 6px solid var(--color-primary);
   }
 
+  /* Cada celda será una “línea” label-valor */
   .tabla-solicitudes td {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+
     border: none;
-    padding: 8px 0;
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 10px;
-    align-items: center;
+    padding: 10px 0;
+
+    /* IMPORTANTÍSIMO: mata cualquier text-align inline */
+    text-align: right !important;
   }
 
+  /* Etiqueta a la izquierda */
   .tabla-solicitudes td::before {
     content: attr(data-label);
-    font-weight: 700;
+    flex: 0 0 140px;      /* ancho fijo para alinear todas las etiquetas */
+    text-align: left;
+    font-weight: 800;
     color: var(--color-primary);
+    line-height: 1.2;
   }
 
-  /* Estado destacado */
-  .tabla-solicitudes td[data-label="Estado"] {
-    padding-top: 10px;
+  /* Valor a la derecha */
+  .tabla-solicitudes td > * ,
+  .tabla-solicitudes td {
+    line-height: 1.25;
   }
 
-  /* Comentario en bloque si es largo */
+  /* Estado: que quede alineado a la derecha y no se estire */
+  .tabla-solicitudes td[data-label="Estado"] .badge {
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* Comentario: permite varias líneas sin romper alineación */
   .tabla-solicitudes td[data-label="Comentario"] {
-    grid-template-columns: 140px 1fr;
-    word-break: break-word;
+    align-items: flex-start;
+  }
+  .tabla-solicitudes td[data-label="Comentario"]::before {
+    padding-top: 2px;
   }
 
-  /* Quitar estilos de zebra hover en móvil (no aportan) */
+  /* Quita zebra/hover en móvil */
   .tabla-solicitudes tr:nth-child(even),
   .tabla-solicitudes tr:hover {
     background: var(--color-surface);
