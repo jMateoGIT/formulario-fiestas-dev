@@ -20,6 +20,7 @@ document.getElementById("btnConsultar").addEventListener("click", async () => {
   const numero = document.getElementById("numEmpleado").value.trim();
   const clave = document.getElementById("claveAcceso").value.trim();
   const fecha = document.getElementById("fechaConsulta").value.trim();
+  const fechaVisual = fecha.split("-").reverse().join("/");
 
   const msg = document.getElementById("msgFecha");
   const resultadosBox = document.getElementById("resultadosBox");
@@ -99,7 +100,10 @@ if (!peticiones.ok) {
       return;
     }
 
-    msg.textContent = "";
+    msg.textContent = "";    
+    document.getElementById("tituloPeticiones").textContent =
+  `Peticiones — ${fechaVisual}`;
+
     resultadosBox.style.display = "block";
     renderizarTabla(datos);
 
@@ -122,7 +126,7 @@ function renderizarTabla(peticiones) {
       <thead>
         <tr>
           <th style="text-align:center;">Posición</th>
-          <th style="text-align:center;">Fecha</th>
+          <th style="text-align:center;">Fecha solicitud</th>
           <th style="text-align:center;">Número nómina</th>
         </tr>
       </thead>
