@@ -142,9 +142,7 @@ function throttle(fn, limit) {
       if (!fechas) {
         mostrarMensaje("❌ Debes seleccionar una o más fechas.", "error");
         return;
-      }
-
-      $("#fechasSolicitadas").value = fechas;
+      }      
 
       const body = {
         empleado: numeroEmpleado,
