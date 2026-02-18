@@ -83,6 +83,10 @@ function throttle(fn, limit) {
 
   document.addEventListener("DOMContentLoaded", () => {
 
+
+  const min = new Date();
+  min.setDate(min.getDate() + 6);
+
     fp = flatpickr("#fechas", {
       mode: "multiple",
       dateFormat: "Y-m-d",   // formato backend
@@ -91,6 +95,7 @@ function throttle(fn, limit) {
       locale: flatpickr.l10ns.es,
       allowInput: true,
       conjunction: ", ",
+      minDate: min, 
       maxDate: "2026-12-31"
     });
 
