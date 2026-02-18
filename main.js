@@ -15,6 +15,12 @@
     btn.classList.toggle("loading", loading);
   };
 
+  const mostrarMensaje = (msg, tipo = "success") => {
+    const respuesta = $("#respuesta");
+    respuesta.textContent = msg;
+    respuesta.className = tipo;
+  };
+
 const validarEmpleadoConClave = async (numero, clave) => {
   const info = $("#nombreEmpleado");
   empleadoValido = false;
