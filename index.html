@@ -26,7 +26,7 @@
 
       <form id="formFiestas" autocomplete="off" novalidate>
         <label for="numeroJDE">Número de empleado: <span class="asterisco">*</span></label>
-        <input type="text" id="numeroJDE" maxlength="6" inputmode="numeric" placeholder="Inserte número de empleado (6 dígitos)"/>
+        <input type="text" id="numeroJDE" maxlength="6" inputmode="numeric" autocomplete="off" placeholder="Inserte número de empleado (6 dígitos)"/>
         <label for="claveAcceso">Clave de acceso: <span class="asterisco">*</span></label>
         <input type="password" id="claveAcceso" placeholder="Introduce tu clave personal" />
 
@@ -40,6 +40,7 @@
                name="FakeNameFechas"
                type="text"
                placeholder="Selecciona las fechas deseadas"
+               autocomplete="off"
                required/>
 
         <input id="fechasSolicitadas" name="fechasSolicitadas" type="hidden"/>
