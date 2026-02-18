@@ -9,13 +9,6 @@
   let fp;
   let empleadoValido = false;
 
-
-  const mostrarMensaje = (msg, tipo = "success") => {
-    const respuesta = $("#respuesta");
-    respuesta.textContent = msg;
-    respuesta.className = tipo;
-  };
-
   const toggleLoading = (loading = true) => {
     const btn = $("#btnEnviar");
     btn.disabled = loading;
