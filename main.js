@@ -151,7 +151,7 @@ function throttle(fn, limit) {
         empleado: numeroEmpleado,
         email: correo,
         fechasSolicitadas: fechas,
-        comentario: $("#Comentario").value.trim()
+        comentario: $("#comentario").value.trim()
       };
 
       try {
