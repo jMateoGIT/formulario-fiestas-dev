@@ -403,11 +403,11 @@ footer a { color: var(--color-accent); }
   }
 
 .tabla-solicitudes td[data-label="Fecha solicitud"]{
-  white-space: normal;        /* permite salto controlado */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.tabla-solicitudes td[data-label="Fecha solicitud"] span{
-  display: block;
-}
+
 
   /* Quita zebra/hover en móvil */
   .tabla-solicitudes tr:nth-child(even),
