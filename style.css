@@ -339,77 +339,70 @@ footer a { color: var(--color-accent); }
 }
 
 /* ======= Tabla responsive tipo cards (móvil) ======= */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
+
+  /* Evita corte de sombras por overflow */
+  .tabla-solicitudes { overflow: visible !important; box-shadow: none; border-radius: 0; }
+
+  /* Más contraste fondo vs tarjeta */
+  .page-content { background: #f1f1f1; }
+  #tablaSolicitudes { padding: 6px; }
 
   .tabla-solicitudes thead { display: none; }
-
   .tabla-solicitudes,
   .tabla-solicitudes tbody,
-  .tabla-solicitudes tr {
-    display: block;
-    width: 100%;
-  }
+  .tabla-solicitudes tr { display: block; width: 100%; }
 
-  .tabla-solicitudes { box-shadow: none; border-radius: 0; }
-
-  .tabla-solicitudes tr {
-    background: var(--color-surface);
+  .tabla-solicitudes tr{
+    background: #fff;
     margin: 0 0 14px 0;
-    padding: 14px 14px;
+    padding: 14px;
     border-radius: 14px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
     border-left: 6px solid var(--color-primary);
   }
 
-  /* Cada celda será una “línea” label-valor */
-  .tabla-solicitudes td {
+  .tabla-solicitudes td{
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
     gap: 12px;
-
     border: none;
-    padding: 10px 0;
+    padding: 8px 0;
 
-    /* IMPORTANTÍSIMO: mata cualquier text-align inline */
+    min-height: 44px;           /* filas uniformes */
+    align-items: center;        /* centrado vertical */
     text-align: right !important;
   }
 
-  /* Etiqueta a la izquierda */
-  .tabla-solicitudes td::before {
+  .tabla-solicitudes td::before{
     content: attr(data-label);
-    flex: 0 0 140px;      /* ancho fijo para alinear todas las etiquetas */
+    flex: 0 0 150px;
     text-align: left;
     font-weight: 800;
     color: var(--color-primary);
-    line-height: 1.2;
+    white-space: nowrap;        /* “Fecha solicitud” en una línea */
   }
 
-  /* Valor a la derecha */
-  .tabla-solicitudes td > * ,
-  .tabla-solicitudes td {
-    line-height: 1.25;
-  }
-
-  /* Estado: que quede alineado a la derecha y no se estire */
-  .tabla-solicitudes td[data-label="Estado"] .badge {
+  /* Estado alineado a la derecha y compacto */
+  .tabla-solicitudes td[data-label="Estado"] .badge{
     margin-left: auto;
     white-space: nowrap;
   }
 
-  /* Comentario: permite varias líneas sin romper alineación */
-  .tabla-solicitudes td[data-label="Comentario"] {
+  /* Comentario puede crecer */
+  .tabla-solicitudes td[data-label="Comentario"]{
     align-items: flex-start;
   }
-  .tabla-solicitudes td[data-label="Comentario"]::before {
-    padding-top: 2px;
+
+  /* Si quieres fecha+hora siempre en una línea */
+  .tabla-solicitudes td[data-label="Fecha solicitud"]{
+    white-space: nowrap;
   }
 
   /* Quita zebra/hover en móvil */
   .tabla-solicitudes tr:nth-child(even),
-  .tabla-solicitudes tr:hover {
-    background: var(--color-surface);
-  }
+  .tabla-solicitudes tr:hover { background: #fff; }
 }
 
 
