@@ -363,26 +363,33 @@ footer a { color: var(--color-accent); }
     border-left: 6px solid var(--color-primary);
   }
 
-  .tabla-solicitudes td{
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    border: none;
-    padding: 8px 0;
+.tabla-solicitudes td{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  padding: 8px 0;
+  min-height: 44px;
+  text-align: right !important;
+}
 
-    min-height: 44px;           /* filas uniformes */
-    align-items: center;        /* centrado vertical */
-    text-align: right !important;
-  }
 
   .tabla-solicitudes td::before{
-    content: attr(data-label);
-    flex: 0 0 150px;
-    text-align: left;
-    font-weight: 800;
-    color: var(--color-primary);
-    white-space: nowrap;        /* “Fecha solicitud” en una línea */
-  }
+  content: attr(data-label);
+  flex: 0 0 140px;        /* ancho fijo etiqueta */
+  text-align: left;
+  font-weight: 800;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.tabla-solicitudes td > * ,
+.tabla-solicitudes td{
+  flex: 1;                /* 👈 EL VALOR OCUPA EL RESTO */
+  text-align: right;
+  min-width: 0;           /* 👈 evita desbordes en flex */
+}
+
 
   /* Estado alineado a la derecha y compacto */
   .tabla-solicitudes td[data-label="Estado"] .badge{
@@ -395,10 +402,12 @@ footer a { color: var(--color-accent); }
     align-items: flex-start;
   }
 
-  /* Si quieres fecha+hora siempre en una línea */
-  .tabla-solicitudes td[data-label="Fecha solicitud"]{
-    white-space: nowrap;
-  }
+.tabla-solicitudes td[data-label="Fecha solicitud"]{
+  white-space: normal;        /* permite salto controlado */
+}
+.tabla-solicitudes td[data-label="Fecha solicitud"] span{
+  display: block;
+}
 
   /* Quita zebra/hover en móvil */
   .tabla-solicitudes tr:nth-child(even),
